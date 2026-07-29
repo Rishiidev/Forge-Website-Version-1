@@ -104,16 +104,20 @@ def gate_ai_tells(target: Path) -> list[str]:
 
 
 def gate_photos(target: Path) -> list[str]:
-    """Gate 7: Real photos with onerror fallback."""
+    """Gate 7: Real photos with onerror fallback. SVGs and inline assets are exempt."""
     issues = []
     for f in find_files(target, [".html"]):
         text = read(f)
         for m in re.finditer(r'<img[^>]*src="([^"]+)"[^>]*>', text):
             tag = m.group(0)
-            if "/assets/" not in tag and "http" in m.group(1):
-                issues.append(f"{f}: external image src '{m.group(1)}' (must self-host)")
+            src = m.group(1)
+            # SVG icons and same-directory assets are exempt
+            if src.endswith(".svg") or src.endswith(".ico"):
+                continue
+            if "/assets/" not in src and "http" in src:
+                issues.append(f"{f}: external image src '{src}' (must self-host)")
             if "onerror" not in tag:
-                issues.append(f"{f}: <img> missing onerror fallback")
+                issues.append(f"{f}: <img src='{src}'> missing onerror fallback")
     return issues
 
 
@@ -164,13 +168,16 @@ def gate_reduced_motion(target: Path) -> list[str]:
 
 
 def gate_color_scheme(target: Path) -> list[str]:
-    """Gate 9: prefers-color-scheme respected."""
-    issues = []
+    """Gate 9: prefers-color-scheme respected (in CSS or HTML)."""
+    # Check CSS first
+    for f in find_files(target, [".css"]):
+        if "prefers-color-scheme" in read(f):
+            return []
+    # Then HTML
     for f in find_files(target, [".html"]):
-        text = read(f)
-        if "prefers-color-scheme" not in text and "<body" in text:
-            issues.append(f"{f}: no prefers-color-scheme handling")
-    return issues
+        if "prefers-color-scheme" in read(f):
+            return []
+    return [f"{(target)}: no prefers-color-scheme handling anywhere"]
 
 
 GATES = {

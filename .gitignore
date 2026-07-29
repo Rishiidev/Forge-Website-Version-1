@@ -1,0 +1,7 @@
+_test-rendered/
+_*.client.json
+__pycache__/
+*.pyc
+.DS_Store
+.env
+.venv/

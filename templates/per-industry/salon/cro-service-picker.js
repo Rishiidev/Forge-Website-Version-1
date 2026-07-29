@@ -8,7 +8,7 @@
  * [
  *   {
  *     "id": "haircut_basic",
- *     "name": "Haircut — Basic",
+ *     "name": "Haircut - Basic",
  *     "category": "hair",
  *     "length_minutes": 30,
  *     "stylists": ["any", "senior"]
