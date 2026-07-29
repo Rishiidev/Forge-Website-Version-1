@@ -1,0 +1,235 @@
+<!--
+  forge-bespoke / clinic / index.html.tmpl
+
+  Industry: Clinic & Medical
+  CRO engine: test-picker (home page)
+  Design system defaults: see references/design-systems.md § 1
+  Palette: soft teal #2c7a7b on white #fdfcf9
+  Fonts: Source Serif 4 (display) + Inter (body)
+
+  This template is the source. It is rendered by scripts/build.py with
+  .client.json context (business name, phone, WhatsApp, hours, photos, etc.).
+  No placeholder may ship. Every CTA resolves. Every fact is GBP-sourced.
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{{business_name}} — {{tagline}}</title>
+  <meta name="description" content="{{meta_description}}">
+  <meta property="og:title" content="{{business_name}}">
+  <meta property="og:description" content="{{meta_description}}">
+  <meta property="og:image" content="{{og_image}}">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="{{canonical_url}}">
+  <link rel="stylesheet" href="/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "name": "{{business_name}}",
+    "description": "{{meta_description}}",
+    "url": "{{canonical_url}}",
+    "telephone": "{{phone_intl}}",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "{{address_street}}",
+      "addressLocality": "{{address_city}}",
+      "addressRegion": "{{address_state}}",
+      "postalCode": "{{address_postal}}",
+      "addressCountry": "IN"
+    },
+    "openingHoursSpecification": {{hours_jsonld}},
+    "aggregateRating": {{rating_jsonld}}
+  }
+  </script>
+</head>
+<body class="theme-light" data-hours='{{hours_json}}' data-whatsapp="{{whatsapp_intl}}" data-phone="{{phone_intl}}">
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" role="banner">
+  <div class="site-header__inner">
+    <a class="site-header__brand" href="/">
+      <img src="/assets/logo.svg" alt="{{business_name}}" width="120" height="32">
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/services.html">Services</a>
+      <a href="/reviews.html">Reviews</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/about.html">About</a>
+    </nav>
+    <a class="btn btn--primary site-header__cta" href="{{whatsapp_url}}">WhatsApp to Enquire</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="hero__inner">
+      <h1 id="hero-heading" class="hero__heading">{{hero_headline}}</h1>
+      <p class="hero__subtext">{{hero_subtext}}</p>
+      <div class="hero__ctas">
+        <a class="btn btn--primary" href="{{whatsapp_url}}">WhatsApp to Enquire</a>
+        <a class="btn btn--ghost" href="tel:{{phone_raw}}">Call {{phone_display}}</a>
+      </div>
+    </div>
+    <figure class="hero__media">
+      <img src="{{hero_photo}}" alt="{{hero_photo_alt}}" width="800" height="600" loading="eager" onerror="this.onerror=null;this.src='/assets/monogram.svg';">
+    </figure>
+  </section>
+
+  <!-- TRUST BAR (above the fold per §6 of SKILL.md) -->
+  <section class="trust-bar" aria-label="Trust signals">
+    <div class="trust-bar__inner">
+      <div class="trust-bar__cell">
+        <span class="trust-bar__num">{{rating_score}}</span>
+        <span class="trust-bar__label">Google rating</span>
+      </div>
+      <div class="trust-bar__cell">
+        <span class="trust-bar__num">{{review_count}}</span>
+        <span class="trust-bar__label">reviews on Google</span>
+      </div>
+      <div class="trust-bar__cell">
+        <span class="trust-bar__num open-now" data-open-now>—</span>
+        <span class="trust-bar__label">right now</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CRO ENGINE: test-picker -->
+  <section class="cro-engine" data-engine="test-picker" aria-labelledby="cro-heading">
+    <div class="cro-engine__inner">
+      <h2 id="cro-heading" class="cro-engine__heading">Pick a test. See fasting, sample, and report timing. WhatsApp to confirm.</h2>
+      <p class="cro-engine__lede">No booking fees. Same-day reports for routine tests.</p>
+
+      <form class="cro-engine__filters" data-cro-filters>
+        <label class="cro-engine__filter">
+          <span>Category</span>
+          <select name="category" data-filter="category">
+            <option value="">All categories</option>
+            <option value="routine">Routine</option>
+            <option value="diabetes">Diabetes</option>
+            <option value="thyroid">Thyroid</option>
+            <option value="liver">Liver</option>
+            <option value="kidney">Kidney</option>
+            <option value="vitamins">Vitamins</option>
+          </select>
+        </label>
+        <label class="cro-engine__filter">
+          <span>Fasting</span>
+          <select name="fasting" data-filter="fasting">
+            <option value="">Any</option>
+            <option value="none">No fasting</option>
+            <option value="8h">8-hour fasting</option>
+            <option value="12h">12-hour fasting</option>
+          </select>
+        </label>
+        <label class="cro-engine__filter">
+          <span>Home collection</span>
+          <select name="home" data-filter="home">
+            <option value="">Any</option>
+            <option value="true">Available</option>
+          </select>
+        </label>
+      </form>
+
+      <div class="cro-engine__results" data-cro-results aria-live="polite">
+        {{test_cards}}
+      </div>
+
+      <div class="cro-engine__detail" data-cro-detail hidden>
+        <!-- Populated by cro-test-picker.js when a test is picked -->
+      </div>
+
+      <div class="cro-engine__cta-wrap">
+        <a class="btn btn--primary cro-engine__cta" data-whatsapp-prefill href="{{whatsapp_url}}" hidden>
+          WhatsApp to book this test
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" aria-labelledby="services-heading">
+    <div class="services__inner">
+      <h2 id="services-heading" class="section-heading">What we run.</h2>
+      <ul class="services__grid">
+        {{service_cards}}
+      </ul>
+      <p class="services__more"><a href="/services.html">See all services and pricing →</a></p>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews" aria-labelledby="reviews-heading">
+    <div class="reviews__inner">
+      <h2 id="reviews-heading" class="section-heading">{{review_count}} Google reviews, {{rating_score}} average.</h2>
+      <p class="reviews__lede">No quotes invented. Read every review on Google, or leave one yourself.</p>
+      <div class="reviews__ctas">
+        <a class="btn btn--primary" href="{{google_reviews_url}}" target="_blank" rel="noopener">Read on Google</a>
+        <a class="btn btn--ghost" href="{{leave_review_url}}" target="_blank" rel="noopener">Leave a review</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-block" aria-labelledby="contact-block-heading">
+    <div class="contact-block__inner">
+      <h2 id="contact-block-heading" class="section-heading">Where to find us.</h2>
+      <div class="contact-block__cards">
+        <a class="contact-card" href="{{whatsapp_url}}">
+          <span class="contact-card__label">WhatsApp</span>
+          <span class="contact-card__value">{{whatsapp_display}}</span>
+          <span class="contact-card__hint">Replies in 10 minutes during hours</span>
+        </a>
+        <a class="contact-card" href="tel:{{phone_raw}}">
+          <span class="contact-card__label">Call</span>
+          <span class="contact-card__value">{{phone_display}}</span>
+          <span class="contact-card__hint">For urgent enquiries</span>
+        </a>
+        <a class="contact-card" href="{{directions_url}}" target="_blank" rel="noopener">
+          <span class="contact-card__label">Directions</span>
+          <span class="contact-card__value">{{address_short}}</span>
+          <span class="contact-card__hint">Open in Google Maps</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer__inner">
+    <p class="site-footer__brand">{{business_name}}</p>
+    <p class="site-footer__address">{{address_full}}</p>
+    <p class="site-footer__contact">
+      <a href="{{whatsapp_url}}">WhatsApp</a> ·
+      <a href="tel:{{phone_raw}}">{{phone_display}}</a> ·
+      <a href="mailto:{{email}}">{{email}}</a>
+    </p>
+    <p class="site-footer__meta">
+      <a href="/about.html">About</a> ·
+      <a href="/services.html">Services</a> ·
+      <a href="/reviews.html">Reviews</a> ·
+      <a href="/contact.html">Contact</a>
+    </p>
+    <p class="site-footer__legal">© {{year}} {{business_name}}. Made with care by <a href="https://forge.bruuhh.com" target="_blank" rel="noopener">Forge</a>.</p>
+  </div>
+</footer>
+
+<!-- Mobile CTA bar (visible <= 768px) -->
+<div class="mobile-cta" role="navigation" aria-label="Quick actions">
+  <div class="mobile-cta__inner">
+    <a class="btn btn--whatsapp" href="{{whatsapp_url}}" target="_blank" rel="noopener">WhatsApp</a>
+    <a class="btn btn--secondary" href="tel:{{phone_raw}}">Call</a>
+  </div>
+</div>
+
+<script src="/cro-test-picker.js" defer></script>
+<script src="/open-now.js" defer></script>
+</body>
+</html>

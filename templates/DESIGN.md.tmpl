@@ -1,0 +1,209 @@
+# DESIGN.md — {{business_name}}
+
+> The single source of truth for the design decisions on this site. Written FIRST, before any HTML. Locked before any page is built. Per `references/design-systems.md`.
+
+**Date:** {{date}}
+**Industry:** {{industry}}
+**ICP:** {{icp}}
+**Skill:** forge-bespoke v{{skill_version}}
+**Designer:** Hermes Agent (with `impeccable` + `design-taste-frontend` as craft standards)
+
+---
+
+## 1. Design Read (per design-taste-frontend Section 0.B)
+
+**One-line read:**
+
+> Reading this as: **{{industry_label}} for {{icp_persona}}**, with a **{{vibe}}** language, leaning toward **{{design_system_choice}}**.
+
+**Why this read:**
+
+- Industry: {{industry_label}} is in scope because {{rationale}}.
+- ICP: The prospect is a {{icp_persona}} because {{rationale}}.
+- Vibe: {{vibe}} because {{rationale}}.
+- Design system: {{design_system_choice}} because {{rationale}}.
+
+---
+
+## 2. Dials (per design-taste-frontend Section 1)
+
+| Dial | Value | Reason |
+|---|---|---|
+| `DESIGN_VARIANCE` | {{variance}} | {{reason}} |
+| `MOTION_INTENSITY` | {{motion}} | {{reason}} |
+| `VISUAL_DENSITY` | {{density}} | {{reason}} |
+
+**Rejected dial values:**
+
+- VARIANCE at {{alt_variance}}: {{why_rejected}}.
+- MOTION at {{alt_motion}}: {{why_rejected}}.
+- DENSITY at {{alt_density}}: {{why_rejected}}.
+
+---
+
+## 3. Design System
+
+### Palette
+
+- **Accent:** `{{palette_anchor}}` ({{palette_name}})
+- **Neutral background:** `{{palette_neutral}}`
+- **Neutral text:** `{{neutral_text}}` (computed for WCAG AA contrast)
+- **Mode:** {{light_only | dark_only | dual}}
+
+**Rejected palettes:**
+
+- {{alt_palette_1}}: {{why_rejected}}.
+- {{alt_palette_2}}: {{why_rejected}}.
+
+### Typography
+
+- **Display:** {{font_display}} (weights: {{weights}})
+- **Body:** {{font_body}} (weights: {{weights}})
+- **Mono:** {{font_mono | none}}
+- **Source:** self-hosted via `@font-face` + `font-display: swap`
+
+**Rejected font pairs:**
+
+- {{alt_font_pair_1}}: {{why_rejected}}.
+- {{alt_font_pair_2}}: {{why_rejected}}.
+
+### Radius
+
+- **Scale:** {{all_sharp | all_soft | all_pill | mixed_with_rule}}
+- **Values:** {{radius_values}}
+
+### Grid
+
+- **Base:** {{4px | 8px}}
+- **Container:** `max-width: {{container_max_width}}`
+- **Breakpoints:** {{breakpoints}}
+
+### Motion
+
+- **Type:** {{motion_type}}
+- **Reduced-motion:** {{reduced_motion_strategy}}
+
+---
+
+## 4. The Honest Content Policy (per references/tone-of-voice.md)
+
+- **Reviews:** {{review_source}} — {{review_count}} reviews, {{review_score}} average.
+- **Hours:** Sourced from {{hours_source}} verbatim. No "Open 24/7" or "Mon-Sat" generalizations.
+- **Prices:** {{pricing_source}}. Where not public, the site says "Confirm by WhatsApp". Never invented.
+- **Photos:** Self-hosted from {{photo_source}}. Each `<img>` has `onerror` swap to a branded monogram.
+- **CTA labels:** Concrete and per-intent. No "Learn more", "Get in touch", "Reach out".
+
+---
+
+## 5. The CRO Engine
+
+**Engine type:** {{cro_engine_type}} (per `assets/industry-playbooks.json`)
+
+**Data source:** {{cro_data_source}}
+
+**State transitions:**
+
+1. {{state_1}}
+2. {{state_2}}
+3. {{state_3}}
+4. {{state_4}}
+5. {{state_5}}
+
+**WhatsApp pre-fill format:**
+
+```
+{{whatsapp_prefill_template}}
+```
+
+**Where the engine lives:**
+
+- Home page: `{{yes | no}}` (above the fold: {{yes | no}})
+- Services page: {{yes | no}}
+
+---
+
+## 6. Per-Page Plan
+
+### `index.html`
+
+- **Hero:** {{hero_headline}} + {{hero_subtext}}
+- **Trust bar:** {{trust_bar_content}} (above the fold)
+- **CRO engine:** {{cro_engine_section}}
+- **Services grid:** {{services_grid_content}}
+- **Reviews block:** {{reviews_block_content}}
+- **Contact block:** {{contact_block_content}}
+
+### `services.html`
+
+- **Hero:** {{services_hero}}
+- **Service list:** {{services_list_structure}}
+- **Per-service CTA:** {{cta_per_service_format}}
+
+### `reviews.html`
+
+- **Reviews count + score:** {{reviews_summary}}
+- **No fabricated quotes:** Verified.
+- **Leave-a-review CTA:** {{leave_review_cta}}
+
+### `contact.html`
+
+- **Action cards:** WhatsApp / Call / Directions
+- **Map:** Google Maps iframe with 1.5s OSM fallback
+- **Hours table:** Today highlighted
+
+### `about.html`
+
+- **Owner story:** {{owner_story_source}}
+- **Hours:** Sourced
+- **WhatsApp CTA:** Yes
+
+---
+
+## 7. The Pre-Flight Gates (per references/preflight-checklist.md)
+
+Every gate is a hard fail:
+
+- [ ] Gate 1: No fabricated content
+- [ ] Gate 2: No dead buttons
+- [ ] Gate 3: No placeholders visible
+- [ ] Gate 4: No em-dashes, no AI tells
+- [ ] Gate 5: Lighthouse ≥95 on all 4 axes (mobile)
+- [ ] Gate 6: CRO engine works end-to-end
+- [ ] Gate 7: Real photos with onerror fallback
+- [ ] Gate 8: `prefers-reduced-motion` honored
+- [ ] Gate 9: `prefers-color-scheme` respected
+- [ ] Gate 10: One accent, one font pair, one radius
+- [ ] Gate 11: WCAG AA contrast on all text
+- [ ] Gate 12: Alt text on every meaningful image
+
+---
+
+## 8. Branch + PR Plan (per references/github-pr-template.md)
+
+Branch order:
+1. `feat/design-system` — write this file + the design tokens
+2. `feat/index` — home page + CRO engine
+3. `feat/services` — services page
+4. `feat/reviews` — reviews page
+5. `feat/contact` — contact page
+6. `feat/about` — about page (skip if not needed)
+
+Each branch gets:
+- Pre-flight pass
+- Lighthouse ≥95 on all 4 axes
+- Mobile + desktop screenshots
+- Self-review with the GitHub PR template
+
+---
+
+## 9. Delivery Checklist
+
+- [ ] DESIGN.md committed
+- [ ] 5 pages built and merged to main
+- [ ] Final pre-flight on main: 12/12 gates pass
+- [ ] Lighthouse 5/5 pages ≥95 mobile
+- [ ] CRO engine state-transitions all verified
+- [ ] GitHub repo at `https://github.com/Rishiidev/{{business_slug}}--site`
+- [ ] Vercel deploy live at `https://{{business_slug}}.vercel.app`
+- [ ] `.delivered.json` written with all metadata
+- [ ] WhatsApp handoff message sent

@@ -1,0 +1,316 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "forge-bespoke-industry-playbooks",
+  "version": "1.0.0",
+  "description": "Per-industry CRO engine selection + design system defaults for forge-bespoke. Loaded by scripts/build.py at the start of every build. Used to pick the right CRO engine type and to seed DESIGN.md with the per-industry palette + font pair. Always overridable by the brief — these are defaults, not rules.",
+  "industries": {
+    "clinic": {
+      "label": "Clinic & Medical",
+      "icp": "ICP-1",
+      "cro_engine": "test-picker",
+      "design_system": {
+        "palette_anchor": "#2c7a7b",
+        "palette_name": "soft teal",
+        "palette_neutral": "#fdfcf9",
+        "font_display": "Source Serif 4",
+        "font_body": "Inter",
+        "mood": "calm, clinical, trustworthy",
+        "variance": 5,
+        "motion": 3,
+        "density": 3
+      },
+      "hero_headline_pattern": "Care that explains itself.",
+      "primary_cta": "WhatsApp to Enquire",
+      "secondary_cta": "Call",
+      "top_services": [
+        "Blood Tests",
+        "Preventive Health Checks",
+        "Sample Collection",
+        "Test Prep",
+        "Report Timelines",
+        "24-Hour Enquiries"
+      ],
+      "anti_patterns": [
+        "red CTAs",
+        "dollar-sign pricing",
+        "cure claims",
+        "before/after photos"
+      ],
+      "operator_upsell": "₹2,999/mo: new test additions, monthly health-checkup banner"
+    },
+    "salon": {
+      "label": "Salon & Beauty",
+      "icp": "ICP-1",
+      "cro_engine": "service-picker",
+      "design_system": {
+        "palette_anchor": "#c97f3a",
+        "palette_name": "warm copper",
+        "palette_neutral": "#faf6f1",
+        "font_display": "Fraunces",
+        "font_body": "Inter",
+        "mood": "editorial, premium, considered",
+        "variance": 7,
+        "motion": 5,
+        "density": 3
+      },
+      "hero_headline_pattern": "Good hair days start here.",
+      "primary_cta": "WhatsApp to Book",
+      "secondary_cta": "Call",
+      "top_services": [
+        "Haircuts",
+        "Hair Colour",
+        "Skincare & Facials",
+        "Nail Services",
+        "Bridal & Event Makeup",
+        "Spa & Body"
+      ],
+      "anti_patterns": [
+        "pink CTAs",
+        "nail emoji",
+        "stock photos of people with arms in the air"
+      ],
+      "operator_upsell": "₹1,999/mo: weekly stylist schedule, monthly promo, bridal season swaps"
+    },
+    "restaurant": {
+      "label": "Cafe & Restaurant",
+      "icp": "ICP-2",
+      "cro_engine": "mood-picker",
+      "design_system": {
+        "palette_anchor": "#6b3410",
+        "palette_name": "warm espresso",
+        "palette_neutral": "#f7f1e8",
+        "font_display": "Playfair Display",
+        "font_body": "Inter",
+        "mood": "local, considered, slow-food",
+        "variance": 7,
+        "motion": 5,
+        "density": 3
+      },
+      "hero_headline_pattern": "The corner your week keeps coming back to.",
+      "primary_cta": "Reserve a Table",
+      "secondary_cta": "View Menu",
+      "top_services": [
+        "Today's Menu",
+        "Reservations",
+        "Home Delivery",
+        "Private Dining",
+        "Catering",
+        "Sunday Brunch"
+      ],
+      "anti_patterns": [
+        "yellow-on-black menus",
+        "AUTHENTIC all-caps",
+        "stock pancakes"
+      ],
+      "operator_upsell": "₹2,999/mo: weekly menu update, seasonal photo reshoots"
+    },
+    "contractor": {
+      "label": "Service & Trade",
+      "icp": "ICP-4",
+      "cro_engine": "project-picker",
+      "cro_engine_status": "v1.5",
+      "design_system": {
+        "palette_anchor": "#1e3a5f",
+        "palette_name": "industrial blue",
+        "palette_neutral": "#fbfaf8",
+        "font_display": "Inter",
+        "font_body": "Inter",
+        "mood": "solid, professional, no-nonsense",
+        "variance": 4,
+        "motion": 3,
+        "density": 4
+      },
+      "hero_headline_pattern": "Fixed today. Not next week.",
+      "primary_cta": "Get a Free Quote",
+      "secondary_cta": "Call",
+      "top_services": [
+        "Free Site Visit",
+        "Top Service",
+        "Top Service 2",
+        "Emergency Calls",
+        "Annual Maintenance",
+        "Service Area Map"
+      ],
+      "anti_patterns": [
+        "generic stock photos",
+        "Family-owned since 1985",
+        "testimonials with no last name"
+      ],
+      "operator_upsell": "₹1,999/mo: emergency-call priority routing, monthly maintenance SMS"
+    },
+    "retail": {
+      "label": "Retail & Boutique",
+      "icp": "ICP-2",
+      "cro_engine": "stock-check",
+      "cro_engine_status": "v1.5",
+      "design_system": {
+        "palette_anchor": "#5b1a1a",
+        "palette_name": "deep maroon",
+        "palette_neutral": "#fbf7f4",
+        "font_display": "Instrument Serif",
+        "font_body": "Inter",
+        "mood": "curated, considered, anti-amazon",
+        "variance": 6,
+        "motion": 4,
+        "density": 3
+      },
+      "hero_headline_pattern": "Pieces worth travelling for.",
+      "primary_cta": "Check Stock",
+      "secondary_cta": "WhatsApp",
+      "top_services": [
+        "In-Store Pickup",
+        "New Arrivals",
+        "Reservations",
+        "Personal Shopping",
+        "Gift Wrapping",
+        "Return Policy"
+      ],
+      "anti_patterns": [
+        "stock photos of shopping bags",
+        "SALE all-caps",
+        "influencer imagery without consent"
+      ],
+      "operator_upsell": "₹2,499/mo: weekly new-arrivals swap, monthly seasonal banner"
+    },
+    "fitness": {
+      "label": "Fitness & Studio",
+      "icp": "ICP-2",
+      "cro_engine": "class-picker",
+      "cro_engine_status": "v1.5",
+      "design_system": {
+        "palette_anchor": "#2b6e2b",
+        "palette_name": "lime",
+        "palette_neutral": "#fafaf7",
+        "font_display": "Space Grotesk",
+        "font_body": "Inter",
+        "mood": "active, energetic, no-time-to-read",
+        "variance": 8,
+        "motion": 7,
+        "density": 4
+      },
+      "hero_headline_pattern": "Practice that doesn't perform.",
+      "primary_cta": "Book First Class Free",
+      "secondary_cta": "View Schedule",
+      "top_services": [
+        "Drop-in Class",
+        "Class Pack",
+        "Monthly Membership",
+        "Private 1-on-1",
+        "Workshops & Retreats",
+        "Teacher Training"
+      ],
+      "anti_patterns": [
+        "generic wellness stock photos",
+        "OM symbols",
+        "purple gradients"
+      ],
+      "operator_upsell": "₹2,499/mo: schedule sync, monthly retreat banner"
+    },
+    "auto": {
+      "label": "Auto & Trade",
+      "icp": "ICP-4",
+      "cro_engine": "project-picker",
+      "cro_engine_status": "v1.5",
+      "design_system": {
+        "palette_anchor": "#cc4b1a",
+        "palette_name": "industrial orange",
+        "palette_neutral": "#fbfaf8",
+        "font_display": "IBM Plex Sans",
+        "font_body": "IBM Plex Sans",
+        "mood": "honest, trade-grade, not showy",
+        "variance": 4,
+        "motion": 3,
+        "density": 5
+      },
+      "hero_headline_pattern": "Honest work. Fair price.",
+      "primary_cta": "Get a Free Quote",
+      "secondary_cta": "Call",
+      "top_services": [
+        "Free Inspection",
+        "Top Service",
+        "Top Service 2",
+        "Emergency Towing",
+        "Annual Service",
+        "Service Area Map"
+      ],
+      "anti_patterns": [
+        "stock photos of shiny new cars",
+        "FAMILY OWNED SINCE 1985",
+        "vague 'best in city' claims"
+      ],
+      "operator_upsell": "₹1,999/mo: emergency-call priority routing, monthly maintenance SMS"
+    },
+    "coach": {
+      "label": "Coach & Tutor & Consultant",
+      "icp": "ICP-3",
+      "cro_engine": "quote-builder",
+      "design_system": {
+        "palette_anchor": "#1a2332",
+        "palette_name": "deep navy",
+        "palette_neutral": "#fafaf7",
+        "font_display": "Fraunces",
+        "font_body": "Inter",
+        "mood": "considered, evidence-first, calm authority",
+        "variance": 6,
+        "motion": 4,
+        "density": 4
+      },
+      "hero_headline_pattern": "Coaching that ends when you don't need it.",
+      "primary_cta": "Book a Free Discovery Call",
+      "secondary_cta": "Read Case Studies",
+      "top_services": [
+        "1-on-1 Coaching",
+        "Group Program",
+        "Discovery Call (free)",
+        "Resource Library",
+        "Corporate Workshops",
+        "Speaking & Keynotes"
+      ],
+      "anti_patterns": [
+        "generic transform your life",
+        "guru energy",
+        "no proof of named clients"
+      ],
+      "operator_upsell": "₹3,999/mo: testimonial collection, monthly workshop promo"
+    },
+    "personal": {
+      "label": "Personal Brand & Portfolio",
+      "icp": "ICP-3",
+      "cro_engine": "quote-builder",
+      "design_system": {
+        "palette_anchor": null,
+        "palette_name": "per-client",
+        "palette_neutral": null,
+        "font_display": null,
+        "font_body": null,
+        "mood": "per-client",
+        "variance": 7,
+        "motion": 5,
+        "density": 3,
+        "_note": "Personal templates derive palette + font from the source PDF. If the source has no brand book, default to a clean editorial system (off-white + ink + single accent)."
+      },
+      "hero_headline_pattern": "per-client (extracted from PDF)",
+      "primary_cta": "per-client",
+      "secondary_cta": "per-client",
+      "top_services": [],
+      "_note": "Personal sites are 1-of-1. The hero, the work, the story all come from the source PDF. The CRO engine is quote-builder because most personal-brand sites convert via 'Email me' or 'Book a call' rather than booking/quote.",
+      "anti_patterns": [
+        "stock photos of the person",
+        "AI-generated portraits",
+        "linkedin headshot at half opacity"
+      ],
+      "operator_upsell": "₹2,499/mo: monthly work updates, quarterly refresh"
+    }
+  },
+  "cro_engine_priority_v1": [
+    "test-picker",
+    "mood-picker",
+    "service-picker",
+    "quote-builder"
+  ],
+  "cro_engine_priority_v1_5": [
+    "project-picker",
+    "stock-check",
+    "class-picker"
+  ]
+}

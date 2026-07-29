@@ -1,0 +1,98 @@
+<!--
+  forge-bespoke / clinic / services.html.tmpl
+
+  Industry: Clinic & Medical
+  Each service has its own pre-filled WhatsApp link (per § CRO Engine § WhatsApp pre-fill format).
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Services — {{business_name}}</title>
+  <meta name="description" content="{{meta_description}}">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="{{canonical_url}}/services.html">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="theme-light" data-hours='{{hours_json}}' data-whatsapp="{{whatsapp_intl}}" data-phone="{{phone_intl}}">
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" role="banner">
+  <div class="site-header__inner">
+    <a class="site-header__brand" href="/">
+      <img src="/assets/logo.svg" alt="{{business_name}}" width="120" height="32">
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/services.html" aria-current="page">Services</a>
+      <a href="/reviews.html">Reviews</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/about.html">About</a>
+    </nav>
+    <a class="btn btn--primary site-header__cta" href="{{whatsapp_url}}">WhatsApp to Enquire</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="page-hero">
+    <div class="page-hero__inner">
+      <h1 class="page-hero__heading">Tests and packages.</h1>
+      <p class="page-hero__subtext">Same-day reports for routine tests. Home collection in {{service_area}}.</p>
+    </div>
+  </section>
+
+  <section class="services-list">
+    <div class="services-list__inner">
+      <h2 class="section-heading">Routine tests</h2>
+      <ul class="services-list__grid">
+        {{routine_test_cards}}
+      </ul>
+
+      <h2 class="section-heading">Specialty tests</h2>
+      <ul class="services-list__grid">
+        {{specialty_test_cards}}
+      </ul>
+
+      <h2 class="section-heading">Health packages</h2>
+      <ul class="services-list__grid">
+        {{package_cards}}
+      </ul>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="cta-band__inner">
+      <h2 class="cta-band__heading">Not sure which test?</h2>
+      <p class="cta-band__subtext">WhatsApp us your concern. We'll tell you which test fits.</p>
+      <a class="btn btn--primary" href="{{whatsapp_url_not_sure}}">WhatsApp to ask</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer__inner">
+    <p class="site-footer__brand">{{business_name}}</p>
+    <p class="site-footer__address">{{address_full}}</p>
+    <p class="site-footer__contact">
+      <a href="{{whatsapp_url}}">WhatsApp</a> ·
+      <a href="tel:{{phone_raw}}">{{phone_display}}</a> ·
+      <a href="mailto:{{email}}">{{email}}</a>
+    </p>
+    <p class="site-footer__legal">© {{year}} {{business_name}}. Made with care by <a href="https://forge.bruuhh.com" target="_blank" rel="noopener">Forge</a>.</p>
+  </div>
+</footer>
+
+<div class="mobile-cta" role="navigation" aria-label="Quick actions">
+  <div class="mobile-cta__inner">
+    <a class="btn btn--whatsapp" href="{{whatsapp_url}}" target="_blank" rel="noopener">WhatsApp</a>
+    <a class="btn btn--secondary" href="tel:{{phone_raw}}">Call</a>
+  </div>
+</div>
+
+<script src="/open-now.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!--
+  forge-bespoke / personal / contact.html.tmpl
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Contact — {{owner_name}}</title>
+  <meta name="description" content="{{meta_description}}">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="{{canonical_url}}/contact.html">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="theme-light" data-whatsapp="{{whatsapp_intl}}" data-phone="{{phone_intl}}">
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" role="banner">
+  <div class="site-header__inner">
+    <a class="site-header__brand" href="/">{{owner_name}}</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/services.html">Services</a>
+      <a href="/reviews.html">Testimonials</a>
+      <a href="/contact.html" aria-current="page">Contact</a>
+      <a href="/about.html">About</a>
+    </nav>
+    <a class="btn btn--primary site-header__cta" href="{{primary_cta_url}}">{{primary_cta_label}}</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="page-hero">
+    <div class="page-hero__inner">
+      <h1 class="page-hero__heading">Reach me.</h1>
+      <p class="page-hero__subtext">WhatsApp and email both reach me directly. Replies within 4 working hours.</p>
+    </div>
+  </section>
+
+  <section class="contact-actions">
+    <div class="contact-actions__inner">
+      <a class="contact-action-card" href="{{whatsapp_url}}">
+        <span class="contact-action-card__label">WhatsApp</span>
+        <span class="contact-action-card__value">{{whatsapp_display}}</span>
+        <span class="contact-action-card__hint">Replies in 4 working hours</span>
+      </a>
+      <a class="contact-action-card" href="mailto:{{email}}">
+        <span class="contact-action-card__label">Email</span>
+        <span class="contact-action-card__value">{{email}}</span>
+        <span class="contact-action-card__hint">For longer enquiries</span>
+      </a>
+      <a class="contact-action-card" href="{{linkedin_url}}" target="_blank" rel="noopener">
+        <span class="contact-action-card__label">LinkedIn</span>
+        <span class="contact-action-card__value">{{owner_name}}</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer__inner">
+    <p class="site-footer__brand">{{owner_name}}</p>
+    <p class="site-footer__contact">
+      <a href="{{whatsapp_url}}">WhatsApp</a> ·
+      <a href="mailto:{{email}}">{{email}}</a>
+    </p>
+    <p class="site-footer__legal">© {{year}} {{owner_name}}. Made with care by <a href="https://forge.bruuhh.com" target="_blank" rel="noopener">Forge</a>.</p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!--
+  forge-bespoke / restaurant / index.html.tmpl
+  CRO engine: mood-picker
+  Palette: warm espresso #6b3410 on cream #f7f1e8
+  Fonts: Playfair Display (display) + Inter (body)
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{{business_name}} — {{tagline}}</title>
+  <meta name="description" content="{{meta_description}}">
+  <meta property="og:title" content="{{business_name}}">
+  <meta property="og:description" content="{{meta_description}}">
+  <meta property="og:image" content="{{og_image}}">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="{{canonical_url}}">
+  <link rel="stylesheet" href="/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "{{business_name}}",
+    "description": "{{meta_description}}",
+    "url": "{{canonical_url}}",
+    "telephone": "{{phone_intl}}",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "{{address_street}}",
+      "addressLocality": "{{address_city}}",
+      "addressRegion": "{{address_state}}",
+      "postalCode": "{{address_postal}}",
+      "addressCountry": "IN"
+    },
+    "servesCuisine": "{{cuisine}}",
+    "openingHoursSpecification": {{hours_jsonld}},
+    "aggregateRating": {{rating_jsonld}}
+  }
+  </script>
+</head>
+<body class="theme-light" data-hours='{{hours_json}}' data-whatsapp="{{whatsapp_intl}}" data-phone="{{phone_intl}}">
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" role="banner">
+  <div class="site-header__inner">
+    <a class="site-header__brand" href="/">
+      <img src="/assets/logo.svg" alt="{{business_name}}" width="120" height="32">
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/menu.html">Menu</a>
+      <a href="/reviews.html">Reviews</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/about.html">About</a>
+    </nav>
+    <a class="btn btn--primary site-header__cta" href="{{whatsapp_url}}">Reserve a Table</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="hero__inner">
+      <h1 id="hero-heading" class="hero__heading">{{hero_headline}}</h1>
+      <p class="hero__subtext">{{hero_subtext}}</p>
+      <div class="hero__ctas">
+        <a class="btn btn--primary" href="{{whatsapp_url}}">Reserve a Table</a>
+        <a class="btn btn--ghost" href="/menu.html">View Today's Menu</a>
+      </div>
+    </div>
+    <figure class="hero__media">
+      <img src="{{hero_photo}}" alt="{{hero_photo_alt}}" width="800" height="600" loading="eager" onerror="this.onerror=null;this.src='/assets/monogram.svg';">
+    </figure>
+  </section>
+
+  <section class="trust-bar" aria-label="Trust signals">
+    <div class="trust-bar__inner">
+      <div class="trust-bar__cell">
+        <span class="trust-bar__num">{{rating_score}}</span>
+        <span class="trust-bar__label">Google rating</span>
+      </div>
+      <div class="trust-bar__cell">
+        <span class="trust-bar__num">{{review_count}}</span>
+        <span class="trust-bar__label">reviews on Google</span>
+      </div>
+      <div class="trust-bar__cell">
+        <span class="trust-bar__num open-now" data-open-now>—</span>
+        <span class="trust-bar__label">right now</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="cro-engine" data-engine="mood-picker" aria-labelledby="cro-heading">
+    <div class="cro-engine__inner">
+      <h2 id="cro-heading" class="cro-engine__heading">What's the occasion?</h2>
+      <p class="cro-engine__lede">Tell us the mood. We'll suggest a table size, a time, and a slot to WhatsApp.</p>
+
+      <div class="cro-engine__results" data-cro-results aria-live="polite">
+        {{mood_cards}}
+      </div>
+
+      <div class="cro-engine__detail" data-cro-detail hidden></div>
+
+      <div class="cro-engine__cta-wrap">
+        <a class="btn btn--primary cro-engine__cta" data-whatsapp-prefill href="{{whatsapp_url}}" hidden>
+          WhatsApp to book this table
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="services" aria-labelledby="services-heading">
+    <div class="services__inner">
+      <h2 id="services-heading" class="section-heading">What we do.</h2>
+      <ul class="services__grid">
+        {{offering_cards}}
+      </ul>
+    </div>
+  </section>
+
+  <section class="reviews" aria-labelledby="reviews-heading">
+    <div class="reviews__inner">
+      <h2 id="reviews-heading" class="section-heading">{{review_count}} Google reviews, {{rating_score}} average.</h2>
+      <div class="reviews__ctas">
+        <a class="btn btn--primary" href="{{google_reviews_url}}" target="_blank" rel="noopener">Read on Google</a>
+        <a class="btn btn--ghost" href="{{leave_review_url}}" target="_blank" rel="noopener">Leave a review</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-block" aria-labelledby="contact-block-heading">
+    <div class="contact-block__inner">
+      <h2 id="contact-block-heading" class="section-heading">Find us.</h2>
+      <div class="contact-block__cards">
+        <a class="contact-card" href="{{whatsapp_url}}">
+          <span class="contact-card__label">WhatsApp</span>
+          <span class="contact-card__value">{{whatsapp_display}}</span>
+        </a>
+        <a class="contact-card" href="tel:{{phone_raw}}">
+          <span class="contact-card__label">Call</span>
+          <span class="contact-card__value">{{phone_display}}</span>
+        </a>
+        <a class="contact-card" href="{{directions_url}}" target="_blank" rel="noopener">
+          <span class="contact-card__label">Directions</span>
+          <span class="contact-card__value">{{address_short}}</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer__inner">
+    <p class="site-footer__brand">{{business_name}}</p>
+    <p class="site-footer__address">{{address_full}}</p>
+    <p class="site-footer__contact">
+      <a href="{{whatsapp_url}}">WhatsApp</a> ·
+      <a href="tel:{{phone_raw}}">{{phone_display}}</a>
+    </p>
+    <p class="site-footer__legal">© {{year}} {{business_name}}. Made with care by <a href="https://forge.bruuhh.com" target="_blank" rel="noopener">Forge</a>.</p>
+  </div>
+</footer>
+
+<div class="mobile-cta" role="navigation" aria-label="Quick actions">
+  <div class="mobile-cta__inner">
+    <a class="btn btn--whatsapp" href="{{whatsapp_url}}" target="_blank" rel="noopener">WhatsApp</a>
+    <a class="btn btn--secondary" href="tel:{{phone_raw}}">Call</a>
+  </div>
+</div>
+
+<script src="/cro-mood-picker.js" defer></script>
+<script src="/open-now.js" defer></script>
+</body>
+</html>

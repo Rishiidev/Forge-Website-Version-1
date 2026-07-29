@@ -1,0 +1,72 @@
+## Page: {{page_name}}
+
+**Business:** {{business_name}}
+**Industry:** {{industry}}
+**CRO engine on this page:** {{cro_engine_on_page}}
+**Pre-flight gates passed:** {{gates_passed}}
+
+## Screenshots
+
+### Mobile (375×812)
+
+| Before | After |
+|---|---|
+| ![Mobile before]({{mobile_before_link}}) | ![Mobile after]({{mobile_after_link}}) |
+
+### Desktop (1440×900)
+
+| Before | After |
+|---|---|
+| ![Desktop before]({{desktop_before_link}}) | ![Desktop after]({{desktop_after_link}}) |
+
+## Design decisions
+
+1. **{{decision_1}}** — {{decision_1_choice}} chosen because {{decision_1_rationale}}. Rejected: {{decision_1_rejected}}.
+2. **{{decision_2}}** — {{decision_2_choice}} chosen because {{decision_2_rationale}}. Rejected: {{decision_2_rejected}}.
+3. **{{decision_3}}** — {{decision_3_choice}} chosen because {{decision_3_rationale}}. Rejected: {{decision_3_rejected}}.
+
+## CRO engine integration (if applicable)
+
+**Engine type:** {{engine_type}}
+**Data source:** {{engine_data_source}}
+**State transitions verified:** {{state_transition_count}}
+**Screenshots of every state:** {{state_screenshots_links}}
+
+## Self-review checklist
+
+- [ ] No fabricated content (reviews, hours, prices)
+- [ ] No dead buttons (every CTA resolves)
+- [ ] No placeholders visible
+- [ ] No em-dashes, no AI tells
+- [ ] Lighthouse ≥95 on all 4 axes (mobile)
+- [ ] CRO engine works end-to-end
+- [ ] Real photos with onerror fallback
+- [ ] `prefers-reduced-motion` honored
+- [ ] `prefers-color-scheme` respected
+- [ ] One accent, one font pair, one radius (locked)
+- [ ] WCAG AA contrast on all text
+- [ ] Alt text on every meaningful image
+
+## Pre-flight output
+
+```
+{{preflight_output}}
+```
+
+## Lighthouse report
+
+```
+{{lighthouse_output}}
+```
+
+Full report: {{lighthouse_json_link}}
+
+## Design references
+
+- DESIGN.md (committed to main): {{design_md_link}}
+- Industry playbook: {{industry_playbook_link}}
+- CRO engine spec: {{cro_engine_spec_link}}
+
+---
+
+🤖 Generated with [forge-bespoke](https://github.com/Rishiidev/Forge-Website-Version-1)

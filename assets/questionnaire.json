@@ -1,0 +1,245 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "forge-bespoke-questionnaire",
+  "version": "1.0.0",
+  "description": "The conversational intake for forge-bespoke Mode 3. Loaded by scripts/questionnaire.py when neither a PDF nor a Google My Business link is available, or when input is incomplete. The questionnaire is walked one question per turn, conversational, never as a wall. If a question can be inferred from another answer, skip it.",
+  "default_order": [
+    "q1_business_name",
+    "q2_what_you_do",
+    "q3_target_customer",
+    "q4_desired_action",
+    "q5_city_area",
+    "q6_phone",
+    "q7_whatsapp",
+    "q8_email",
+    "q9_has_gbp",
+    "q10_photos",
+    "q11_hours",
+    "q12_top_services",
+    "q13_price_range",
+    "q14_reviews",
+    "q15_homepage_asks",
+    "q16_dont_want",
+    "q17_deadline",
+    "q18_approver"
+  ],
+  "questions": [
+    {
+      "id": "q1_business_name",
+      "prompt": "What's your name (or the name people call your business)?",
+      "type": "string",
+      "required": true,
+      "max_length": 120,
+      "infers": ["business.name"]
+    },
+    {
+      "id": "q2_what_you_do",
+      "prompt": "What do you do? In one sentence, the way you'd say it to a neighbour.",
+      "type": "string",
+      "required": true,
+      "max_length": 240,
+      "infers": ["business.description_short", "industry.candidates"]
+    },
+    {
+      "id": "q3_target_customer",
+      "prompt": "Who is this site for? Walk me through the person you most want to land on it.",
+      "type": "long_string",
+      "required": true,
+      "max_length": 500,
+      "infers": ["icp.persona", "design.vibe"]
+    },
+    {
+      "id": "q4_desired_action",
+      "prompt": "When they land, what should they do?",
+      "type": "enum",
+      "required": true,
+      "options": [
+        "Book an appointment",
+        "Call you",
+        "WhatsApp you",
+        "Buy something",
+        "Read about you and decide later",
+        "Something else"
+      ],
+      "infers": ["primary_cta", "cro_engine.preference"]
+    },
+    {
+      "id": "q5_city_area",
+      "prompt": "What city and area do you serve?",
+      "type": "string",
+      "required": true,
+      "max_length": 120,
+      "infers": ["business.address.geographic"]
+    },
+    {
+      "id": "q6_phone",
+      "prompt": "Phone number — the one you actually answer.",
+      "type": "phone",
+      "required": true,
+      "infers": ["business.phone_raw", "business.phone_intl", "business.phone_display"]
+    },
+    {
+      "id": "q7_whatsapp",
+      "prompt": "WhatsApp number — same as your phone, or different?",
+      "type": "phone",
+      "required": true,
+      "default": "same_as_phone",
+      "infers": ["business.whatsapp_raw", "business.whatsapp_intl"]
+    },
+    {
+      "id": "q8_email",
+      "prompt": "Email — for inquiries only. Optional.",
+      "type": "email",
+      "required": false,
+      "infers": ["business.email"]
+    },
+    {
+      "id": "q9_has_gbp",
+      "prompt": "Do you have a Google Maps listing?",
+      "type": "enum",
+      "required": true,
+      "options": ["Yes", "No", "I'm not sure"],
+      "branches": {
+        "Yes": "q9a_gbp_link",
+        "No": "q11_hours",
+        "I'm not sure": "q11_hours"
+      }
+    },
+    {
+      "id": "q9a_gbp_link",
+      "prompt": "Paste your Google Maps link, or just the business name and I'll find it.",
+      "type": "string",
+      "required": true,
+      "max_length": 500,
+      "infers": ["business.gbp_url"],
+      "skip_if_mode": "gbp"
+    },
+    {
+      "id": "q10_photos",
+      "prompt": "Photos of the place / work / you — can you drop 3 to 10?",
+      "type": "enum",
+      "required": true,
+      "options": ["Yes, here they are", "I'll send them later", "No, use placeholders"],
+      "branches": {
+        "Yes, here they are": "q10a_upload",
+        "I'll send them later": "q11_hours",
+        "No, use placeholders": "q11_hours"
+      },
+      "infers": ["photos.source"]
+    },
+    {
+      "id": "q10a_upload",
+      "prompt": "Great. Drop the paths or attach them now.",
+      "type": "file_paths",
+      "required": true,
+      "min_count": 3,
+      "max_count": 10,
+      "infers": ["photos.paths"]
+    },
+    {
+      "id": "q11_hours",
+      "prompt": "When are you open? Day-by-day, or 'same every day, X to Y.'",
+      "type": "structured_hours",
+      "required": true,
+      "infers": ["business.hours"]
+    },
+    {
+      "id": "q12_top_services",
+      "prompt": "What are your top 3 services or products? The ones that pay the bills.",
+      "type": "string_list",
+      "required": true,
+      "min_count": 3,
+      "max_count": 6,
+      "infers": ["business.services"]
+    },
+    {
+      "id": "q13_price_range",
+      "prompt": "What's the price range on those, if you list prices publicly?",
+      "type": "string",
+      "required": false,
+      "max_length": 240,
+      "placeholder": "If you'd rather people WhatsApp to confirm, type 'confirm by WhatsApp'.",
+      "infers": ["business.pricing"]
+    },
+    {
+      "id": "q14_reviews",
+      "prompt": "Reviews — do you have any? Google / JustDial / Practo / mouth-only?",
+      "type": "enum",
+      "required": true,
+      "options": [
+        "Yes — Google",
+        "Yes — JustDial",
+        "Yes — Practo",
+        "Yes — other platform",
+        "Yes — word of mouth only",
+        "No reviews yet"
+      ],
+      "branches": {
+        "Yes — Google": "q14a_review_count",
+        "Yes — JustDial": "q14a_review_count",
+        "Yes — Practo": "q14a_review_count",
+        "Yes — other platform": "q14a_review_count",
+        "Yes — word of mouth only": "q14a_review_count",
+        "No reviews yet": "q15_homepage_asks"
+      },
+      "infers": ["reviews.source"]
+    },
+    {
+      "id": "q14a_review_count",
+      "prompt": "Roughly how many, and what's the average score?",
+      "type": "string",
+      "required": true,
+      "max_length": 80,
+      "placeholder": "e.g. 'about 80 reviews, 4.6 average'",
+      "infers": ["reviews.count", "reviews.score"]
+    },
+    {
+      "id": "q15_homepage_asks",
+      "prompt": "Anything specific you want on the homepage? (Hero image, owner photo, video, slogan.)",
+      "type": "long_string",
+      "required": false,
+      "max_length": 500,
+      "infers": ["design.hero_assets", "design.slogan"]
+    },
+    {
+      "id": "q16_dont_want",
+      "prompt": "Anything you DON'T want? (Stock photos, certain colors, an 'AI feel,' your old logo.)",
+      "type": "long_string",
+      "required": false,
+      "max_length": 500,
+      "infers": ["design.avoid"]
+    },
+    {
+      "id": "q17_deadline",
+      "prompt": "What's the deadline? (Soft target — does it need to be live before an event?)",
+      "type": "string",
+      "required": false,
+      "max_length": 120,
+      "placeholder": "If no rush, type 'no rush'.",
+      "infers": ["delivery.deadline"]
+    },
+    {
+      "id": "q18_approver",
+      "prompt": "Who else needs to approve this before it goes live? (Spouse, partner, CA, no-one.)",
+      "type": "string",
+      "required": true,
+      "default": "no-one",
+      "infers": ["delivery.approvers"]
+    }
+  ],
+  "skip_rules": [
+    {
+      "skip": "q7_whatsapp",
+      "when": "q4_desired_action != 'WhatsApp you'"
+    },
+    {
+      "skip": "q8_email",
+      "when": "q4_desired_action in ['Book an appointment', 'Call you', 'WhatsApp you']"
+    },
+    {
+      "skip": "q13_price_range",
+      "when": "q14_reviews == 'No reviews yet'"
+    }
+  ],
+  "completion_message": "Got it. I'll have a draft in your hands within 3-5 business days. I'll WhatsApp you as soon as the design system is locked in — usually within 24 hours of now."
+}

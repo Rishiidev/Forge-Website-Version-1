@@ -1,0 +1,103 @@
+<!--
+  forge-bespoke / restaurant / about.html.tmpl
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>About — {{business_name}}</title>
+  <meta name="description" content="{{meta_description}}">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="{{canonical_url}}/about.html">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="theme-light" data-hours='{{hours_json}}' data-whatsapp="{{whatsapp_intl}}" data-phone="{{phone_intl}}">
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" role="banner">
+  <div class="site-header__inner">
+    <a class="site-header__brand" href="/">
+      <img src="/assets/logo.svg" alt="{{business_name}}" width="120" height="32">
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/services.html">Menu</a>
+      <a href="/reviews.html">Reviews</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/about.html" aria-current="page">About</a>
+    </nav>
+    <a class="btn btn--primary site-header__cta" href="{{whatsapp_url}}">Reserve a Table</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="page-hero">
+    <div class="page-hero__inner">
+      <h1 class="page-hero__heading">About {{business_name}}.</h1>
+    </div>
+  </section>
+
+  <section class="about-story">
+    <div class="about-story__inner">
+      <figure class="about-story__portrait">
+        <img src="{{owner_photo}}" alt="{{owner_name}}" width="400" height="400" loading="lazy" onerror="this.onerror=null;this.src='/assets/monogram.svg';">
+      </figure>
+      <div class="about-story__body">
+        {{owner_story_html}}
+      </div>
+    </div>
+  </section>
+
+  <section class="about-chef">
+    <div class="about-chef__inner">
+      <h2 class="section-heading">Chef.</h2>
+      <p>{{chef_story}}</p>
+    </div>
+  </section>
+
+  <section class="about-hours">
+    <div class="about-hours__inner">
+      <h2 class="section-heading">Hours.</h2>
+      <table class="hours-table" data-hours-table>
+        <caption class="visually-hidden">Opening hours for {{business_name}}</caption>
+        <thead><tr><th scope="col">Day</th><th scope="col">Hours</th></tr></thead>
+        <tbody>{{hours_rows}}</tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="cta-band__inner">
+      <h2 class="cta-band__heading">Reserve a table?</h2>
+      <p class="cta-band__subtext">Tell us the occasion. We'll suggest a slot.</p>
+      <a class="btn btn--primary" href="{{whatsapp_url}}">Reserve via WhatsApp</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer__inner">
+    <p class="site-footer__brand">{{business_name}}</p>
+    <p class="site-footer__address">{{address_full}}</p>
+    <p class="site-footer__contact">
+      <a href="{{whatsapp_url}}">WhatsApp</a> ·
+      <a href="tel:{{phone_raw}}">{{phone_display}}</a>
+    </p>
+    <p class="site-footer__legal">© {{year}} {{business_name}}. Made with care by <a href="https://forge.bruuhh.com" target="_blank" rel="noopener">Forge</a>.</p>
+  </div>
+</footer>
+
+<div class="mobile-cta" role="navigation" aria-label="Quick actions">
+  <div class="mobile-cta__inner">
+    <a class="btn btn--whatsapp" href="{{whatsapp_url}}" target="_blank" rel="noopener">WhatsApp</a>
+    <a class="btn btn--secondary" href="tel:{{phone_raw}}">Call</a>
+  </div>
+</div>
+
+<script src="/open-now.js" defer></script>
+</body>
+</html>

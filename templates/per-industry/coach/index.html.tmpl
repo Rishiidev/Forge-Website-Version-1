@@ -1,0 +1,155 @@
+<!--
+  forge-bespoke / coach / index.html.tmpl
+  CRO engine: quote-builder
+  Palette: deep navy #1a2332 on warm white #fafaf7
+  Fonts: Fraunces (display) + Inter (body)
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{{business_name}} — {{tagline}}</title>
+  <meta name="description" content="{{meta_description}}">
+  <meta property="og:title" content="{{business_name}}">
+  <meta property="og:description" content="{{meta_description}}">
+  <meta property="og:image" content="{{og_image}}">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="{{canonical_url}}">
+  <link rel="stylesheet" href="/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "{{business_name}}",
+    "description": "{{meta_description}}",
+    "url": "{{canonical_url}}",
+    "telephone": "{{phone_intl}}",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "{{address_street}}",
+      "addressLocality": "{{address_city}}",
+      "addressRegion": "{{address_state}}",
+      "postalCode": "{{address_postal}}",
+      "addressCountry": "IN"
+    }
+  }
+  </script>
+</head>
+<body class="theme-light" data-whatsapp="{{whatsapp_intl}}" data-phone="{{phone_intl}}">
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" role="banner">
+  <div class="site-header__inner">
+    <a class="site-header__brand" href="/">
+      <img src="/assets/logo.svg" alt="{{business_name}}" width="120" height="32">
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/services.html">Services</a>
+      <a href="/reviews.html">Testimonials</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/about.html">About</a>
+    </nav>
+    <a class="btn btn--primary site-header__cta" href="{{whatsapp_url_discovery}}">Book a Free Discovery Call</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="hero__inner">
+      <h1 id="hero-heading" class="hero__heading">{{hero_headline}}</h1>
+      <p class="hero__subtext">{{hero_subtext}}</p>
+      <div class="hero__ctas">
+        <a class="btn btn--primary" href="{{whatsapp_url_discovery}}">Book a Free Discovery Call</a>
+        <a class="btn btn--ghost" href="/services.html">See how we work</a>
+      </div>
+    </div>
+    <figure class="hero__media">
+      <img src="{{hero_photo}}" alt="{{hero_photo_alt}}" width="800" height="600" loading="eager" onerror="this.onerror=null;this.src='/assets/monogram.svg';">
+    </figure>
+  </section>
+
+  <section class="cro-engine" data-engine="quote-builder" aria-labelledby="cro-heading">
+    <div class="cro-engine__inner">
+      <h2 id="cro-heading" class="cro-engine__heading">A 4-question scope. WhatsApp me a discovery call.</h2>
+      <p class="cro-engine__lede">Takes 60 seconds. I'll respond within 4 working hours with whether we're a fit.</p>
+
+      <div class="cro-engine__results" data-cro-results>
+        {{quote_builder_questions}}
+      </div>
+
+      <div class="cro-engine__detail" data-cro-detail hidden></div>
+
+      <div class="cro-engine__cta-wrap">
+        <a class="btn btn--primary cro-engine__cta" data-whatsapp-prefill href="{{whatsapp_url}}" hidden>
+          WhatsApp me this scope
+        </a>
+        <a class="btn btn--ghost cro-engine__cta-email" data-email-prefill href="mailto:{{email}}" hidden>
+          Or email me this instead
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="services" aria-labelledby="services-heading">
+    <div class="services__inner">
+      <h2 id="services-heading" class="section-heading">How we work.</h2>
+      <ul class="services__grid">
+        {{service_cards}}
+      </ul>
+    </div>
+  </section>
+
+  <section class="reviews" aria-labelledby="reviews-heading">
+    <div class="reviews__inner">
+      <h2 id="reviews-heading" class="section-heading">Testimonials.</h2>
+      {{testimonials_block}}
+      <div class="reviews__ctas">
+        <a class="btn btn--ghost" href="/reviews.html">See all testimonials</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-block" aria-labelledby="contact-block-heading">
+    <div class="contact-block__inner">
+      <h2 id="contact-block-heading" class="section-heading">Reach me.</h2>
+      <div class="contact-block__cards">
+        <a class="contact-card" href="{{whatsapp_url_discovery}}">
+          <span class="contact-card__label">WhatsApp</span>
+          <span class="contact-card__value">{{whatsapp_display}}</span>
+          <span class="contact-card__hint">Replies in 4 working hours</span>
+        </a>
+        <a class="contact-card" href="mailto:{{email}}">
+          <span class="contact-card__label">Email</span>
+          <span class="contact-card__value">{{email}}</span>
+          <span class="contact-card__hint">For longer enquiries</span>
+        </a>
+        <a class="contact-card" href="{{linkedin_url}}" target="_blank" rel="noopener">
+          <span class="contact-card__label">LinkedIn</span>
+          <span class="contact-card__value">{{owner_name}}</span>
+          <span class="contact-card__hint">For formal intros</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer__inner">
+    <p class="site-footer__brand">{{business_name}}</p>
+    <p class="site-footer__contact">
+      <a href="{{whatsapp_url}}">WhatsApp</a> ·
+      <a href="mailto:{{email}}">{{email}}</a> ·
+      <a href="{{linkedin_url}}" target="_blank" rel="noopener">LinkedIn</a>
+    </p>
+    <p class="site-footer__legal">© {{year}} {{business_name}}. Made with care by <a href="https://forge.bruuhh.com" target="_blank" rel="noopener">Forge</a>.</p>
+  </div>
+</footer>
+
+<script src="/cro-quote-builder.js" defer></script>
+</body>
+</html>

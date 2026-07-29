@@ -1,0 +1,134 @@
+<!--
+  forge-bespoke / clinic / contact.html.tmpl
+
+  Industry: Clinic & Medical
+  Action cards (WhatsApp / Call / Directions), map with OSM fallback, hours table.
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Contact — {{business_name}}</title>
+  <meta name="description" content="{{meta_description}}">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="{{canonical_url}}/contact.html">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="theme-light" data-hours='{{hours_json}}' data-whatsapp="{{whatsapp_intl}}" data-phone="{{phone_intl}}">
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" role="banner">
+  <div class="site-header__inner">
+    <a class="site-header__brand" href="/">
+      <img src="/assets/logo.svg" alt="{{business_name}}" width="120" height="32">
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/services.html">Services</a>
+      <a href="/reviews.html">Reviews</a>
+      <a href="/contact.html" aria-current="page">Contact</a>
+      <a href="/about.html">About</a>
+    </nav>
+    <a class="btn btn--primary site-header__cta" href="{{whatsapp_url}}">WhatsApp to Enquire</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="page-hero">
+    <div class="page-hero__inner">
+      <h1 class="page-hero__heading">Reach us.</h1>
+      <p class="page-hero__subtext">WhatsApp is the fastest. Replies in 10 minutes during hours.</p>
+    </div>
+  </section>
+
+  <section class="contact-actions">
+    <div class="contact-actions__inner">
+      <a class="contact-action-card" href="{{whatsapp_url}}">
+        <span class="contact-action-card__icon" aria-hidden="true">{{whatsapp_glyph_svg}}</span>
+        <span class="contact-action-card__label">WhatsApp</span>
+        <span class="contact-action-card__value">{{whatsapp_display}}</span>
+        <span class="contact-action-card__hint">Replies in 10 minutes</span>
+      </a>
+      <a class="contact-action-card" href="tel:{{phone_raw}}">
+        <span class="contact-action-card__icon" aria-hidden="true">{{phone_glyph_svg}}</span>
+        <span class="contact-action-card__label">Call</span>
+        <span class="contact-action-card__value">{{phone_display}}</span>
+        <span class="contact-action-card__hint">For urgent enquiries</span>
+      </a>
+      <a class="contact-action-card" href="{{directions_url}}" target="_blank" rel="noopener">
+        <span class="contact-action-card__icon" aria-hidden="true">{{pin_glyph_svg}}</span>
+        <span class="contact-action-card__label">Directions</span>
+        <span class="contact-action-card__value">{{address_short}}</span>
+        <span class="contact-action-card__hint">Open in Google Maps</span>
+      </a>
+      <a class="contact-action-card" href="mailto:{{email}}">
+        <span class="contact-action-card__icon" aria-hidden="true">{{mail_glyph_svg}}</span>
+        <span class="contact-action-card__label">Email</span>
+        <span class="contact-action-card__value">{{email}}</span>
+        <span class="contact-action-card__hint">For non-urgent enquiries</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="contact-map">
+    <div class="contact-map__inner">
+      <h2 class="section-heading">Where we are.</h2>
+      <div class="contact-map__frame" data-map-fallback>
+        <iframe
+          src="{{google_maps_embed_url}}"
+          width="100%" height="400" loading="lazy"
+          title="{{business_name}} on Google Maps"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+      <p class="contact-map__address">{{address_full}}</p>
+    </div>
+  </section>
+
+  <section class="contact-hours">
+    <div class="contact-hours__inner">
+      <h2 class="section-heading">Hours.</h2>
+      <table class="hours-table" data-hours-table>
+        <caption class="visually-hidden">Opening hours for {{business_name}}</caption>
+        <thead>
+          <tr>
+            <th scope="col">Day</th>
+            <th scope="col">Hours</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{hours_rows}}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer__inner">
+    <p class="site-footer__brand">{{business_name}}</p>
+    <p class="site-footer__address">{{address_full}}</p>
+    <p class="site-footer__contact">
+      <a href="{{whatsapp_url}}">WhatsApp</a> ·
+      <a href="tel:{{phone_raw}}">{{phone_display}}</a> ·
+      <a href="mailto:{{email}}">{{email}}</a>
+    </p>
+    <p class="site-footer__legal">© {{year}} {{business_name}}. Made with care by <a href="https://forge.bruuhh.com" target="_blank" rel="noopener">Forge</a>.</p>
+  </div>
+</footer>
+
+<div class="mobile-cta" role="navigation" aria-label="Quick actions">
+  <div class="mobile-cta__inner">
+    <a class="btn btn--whatsapp" href="{{whatsapp_url}}" target="_blank" rel="noopener">WhatsApp</a>
+    <a class="btn btn--secondary" href="tel:{{phone_raw}}">Call</a>
+  </div>
+</div>
+
+<script src="/open-now.js" defer></script>
+<script src="/map-fallback.js" defer></script>
+</body>
+</html>

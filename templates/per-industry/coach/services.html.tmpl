@@ -1,0 +1,72 @@
+<!--
+  forge-bespoke / coach / services.html.tmpl
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>How we work — {{business_name}}</title>
+  <meta name="description" content="{{meta_description}}">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="{{canonical_url}}/services.html">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="theme-light" data-whatsapp="{{whatsapp_intl}}" data-phone="{{phone_intl}}">
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" role="banner">
+  <div class="site-header__inner">
+    <a class="site-header__brand" href="/">
+      <img src="/assets/logo.svg" alt="{{business_name}}" width="120" height="32">
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/services.html" aria-current="page">Services</a>
+      <a href="/reviews.html">Testimonials</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/about.html">About</a>
+    </nav>
+    <a class="btn btn--primary site-header__cta" href="{{whatsapp_url_discovery}}">Book a Free Discovery Call</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="page-hero">
+    <div class="page-hero__inner">
+      <h1 class="page-hero__heading">How we work.</h1>
+      <p class="page-hero__subtext">Three offerings. Discovery call is free for serious enquiries.</p>
+    </div>
+  </section>
+
+  <section class="services-list">
+    <div class="services-list__inner">
+      {{offering_blocks}}
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="cta-band__inner">
+      <h2 class="cta-band__heading">Ready to start?</h2>
+      <p class="cta-band__subtext">WhatsApp me a 4-question scope. I reply within 4 working hours.</p>
+      <a class="btn btn--primary" href="{{whatsapp_url}}">WhatsApp me</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer__inner">
+    <p class="site-footer__brand">{{business_name}}</p>
+    <p class="site-footer__contact">
+      <a href="{{whatsapp_url}}">WhatsApp</a> ·
+      <a href="mailto:{{email}}">{{email}}</a>
+    </p>
+    <p class="site-footer__legal">© {{year}} {{business_name}}. Made with care by <a href="https://forge.bruuhh.com" target="_blank" rel="noopener">Forge</a>.</p>
+  </div>
+</footer>
+
+</body>
+</html>

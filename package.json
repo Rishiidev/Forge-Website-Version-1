@@ -1,0 +1,43 @@
+{
+  "name": "forge-bespoke",
+  "version": "1.0.0",
+  "description": "The Made-For-You ₹24,999 engine for the Forge funnel. Hand-crafted 5-page websites with industry-specific CRO engines, Git-tracked per-page PR cycles, and pre-flight mechanical gates.",
+  "author": "Forge <forge@bruuhh.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/Rishiidev/Forge-Website-Version-1",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rishiidev/Forge-Website-Version-1.git"
+  },
+  "keywords": [
+    "forge",
+    "bespoke",
+    "website-builder",
+    "cro",
+    "indian-smb",
+    "made-for-you",
+    "github-pages",
+    "vercel",
+    "lighthouse"
+  ],
+  "engines": {
+    "node": ">=20.0.0",
+    "python": ">=3.11.0"
+  },
+  "hermes": {
+    "skill_dir": "~/.hermes/skills/forge/bespoke",
+    "load_priority": 50,
+    "tags": ["forge", "bespoke", "website", "cro", "indian-smb"],
+    "related_skills": [
+      "forge-audit",
+      "forge-website",
+      "forge-website-pro",
+      "forge-positioning",
+      "impeccable",
+      "design-taste-frontend",
+      "github-pr-workflow",
+      "github-code-review",
+      "github-repo-management"
+    ]
+  }
+}
